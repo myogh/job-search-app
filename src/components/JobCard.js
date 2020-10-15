@@ -3,14 +3,14 @@ import React from "react";
 const JobCard = () => {
   return (
     <div>
-      <div className="w-1/5 p-6 bg-white rounded-lg border-b-8 border-red-700 mx-auto">
-        <p className="text-gray-600">5hrs ago &bull; full-time </p>
-        <h1 className="font-bold text-2xl mt-2 mb-2">
+      <div className="p-6 bg-white rounded-lg border-b-8 border-red-700">
+        <p className="text-gray-600 text-sm">5hrs ago &bull; full-time </p>
+        <h1 className="font-bold text-xl mt-2 mb-2">
           Senior Software Engineer
         </h1>
-        <h2 className="text-lg text-gray-800 mb-6">Marvel Medias Inc.</h2>
+        <h2 className="text-sm text-gray-800 mb-6">Marvel Medias Inc.</h2>
         <div className="flex justify-between">
-          <p className="text-blue-600 text-md mb-4">Amsterdam, NewZeland</p>
+          <p className="text-blue-600 text-sm mb-4">Amsterdam, NewZeland</p>
           <svg
             className="text-blue-800"
             xmlns="http://www.w3.org/2000/svg"
