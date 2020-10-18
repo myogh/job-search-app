@@ -1,9 +1,13 @@
 import React from "react";
 import JobCard from "./JobCard";
-import { colors } from "../assets/colors";
 
 // --------- JobsContainer Comp | Parent: App --------------------
-const JobsContainer = ({ joblist, loading, handleJobSave }) => {
+const JobsContainer = ({
+  joblist,
+  loading,
+  handleJobSave,
+  handleJobRemove,
+}) => {
   return (
     <div>
       <div className="container mx-auto mt-20 px-16 mb-20">
@@ -13,8 +17,8 @@ const JobsContainer = ({ joblist, loading, handleJobSave }) => {
               <JobCard
                 key={job.id}
                 jobDetail={job}
-                color={colors[Math.floor(Math.random() * 8)]}
                 handleJobSave={handleJobSave}
+                handleJobRemove={handleJobRemove}
               />
             ))}
           </div>

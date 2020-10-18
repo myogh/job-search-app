@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { colors } from "./assets/colors";
 import Header from "./components/Header";
 import JobsContainer from "./components/JobsContainer";
 import Pagination from "./components/Pagination";
@@ -17,7 +18,12 @@ function App() {
     fetch("/positions.json?description=python")
       .then((response) => response.json())
       .then((data) => {
-        setJobList(data);
+        const newData = data.map((eachData) =>
+          Object.assign({}, eachData, {
+            color: colors[Math.floor(Math.random() * 40)],
+          })
+        );
+        setJobList(newData);
         setLoading(false);
       });
   }, []);
@@ -33,10 +39,15 @@ function App() {
       });
   };
 
-  // ------------------ HANDLE JOB SAVE ------------------------------
+  // ------------------ HANDLE JOB SAVE AND REMOVE ------------------------------
   const handleSave = (id) => {
-    setSavedJob((prev) => [...prev, jobList.filter((job) => job.id === id)]);
-    console.log(savedJobList);
+    const sv = [...savedJobList, ...jobList.filter((job) => job.id === id)];
+    setSavedJob(sv);
+  };
+
+  const handleRemove = (id) => {
+    const sv = savedJobList.filter((job) => job.id !== id);
+    setSavedJob(sv);
   };
 
   // ----------------HANDLE PAGE NUMBER ---------------------------
@@ -57,10 +68,12 @@ function App() {
     <div>
       <Header />
       <SearchBox handleSearch={handleSearch} />
+      <h1>{savedJobList.length}</h1>
       <JobsContainer
         joblist={postInOnePage}
         loading={loading}
         handleJobSave={handleSave}
+        handleJobRemove={handleRemove}
       />
       <Pagination
         numOfPages={numOfPages}
