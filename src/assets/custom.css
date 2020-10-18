@@ -4,3 +4,8 @@
   background-size: cover;
   background-position: bottom;
 }
+
+body {
+  background-color: #e2e8f0;
+  margin: 0;
+}

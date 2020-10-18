@@ -23,6 +23,9 @@ module.exports = {
       },
     },
   },
-  variants: {},
+  variants: {
+    backgroundColor: ["responsive", "hover", "focus", "visited"],
+    textColor: ["responsive", "hover", "focus", "visited"],
+  },
   plugins: [],
 };

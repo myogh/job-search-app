@@ -1,25 +1,31 @@
-import React from "react"
+import React from "react";
 
-//----------- JobCard Comp PARENT: JobContainer -----------------
-const JobCard = ({ job }) => {
-  const jobCreateDateArray = job.created_at.split(" ")
+//----------- JobCard Comp | PARENT: JobContainer -----------------
+const JobCard = ({ jobDetail, color, handleJobSave }) => {
+  // ------------- JOB POSTED DATE -------------------------
+  const jobCreateDateArray = jobDetail.created_at.split(" ");
   const jobPostDate =
     jobCreateDateArray[1] +
     " " +
     jobCreateDateArray[2] +
     " " +
-    jobCreateDateArray[5]
+    jobCreateDateArray[5];
 
   return (
     <div>
-      <div className={`p-6 bg-white rounded-lg border-b-8 border-red-500`}>
-        <p className="text-gray-600 text-sm">Posted on {jobPostDate}</p>
-        <h1 className="font-bold text-lg mt-2 mb-2">{job.title}</h1>
-        <h2 className="text-sm text-gray-800 mb-8">{job.company}</h2>
+      <div className={`p-6 bg-white rounded-lg border-b-8 border-${color}-500`}>
         <div className="flex justify-between">
-          <p className="text-blue-600 text-sm mb-4">{job.location}</p>
+          <p className="text-gray-500 text-sm">Posted on {jobPostDate}</p>
+          <p className="text-xs text-gray-500">{jobDetail.type}</p>
+        </div>
+        <h1 className="font-bold text-lg mt-2 mb-2">{jobDetail.title}</h1>
+        <h2 className="text-sm text-gray-800 mb-8">{jobDetail.company}</h2>
+        <div className="flex justify-between">
+          <p className="text-blue-600 text-sm mb-4">{jobDetail.location}</p>
+
           <svg
             className="text-blue-800"
+            onClick={() => handleJobSave(jobDetail.id)}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             width="22"
@@ -37,7 +43,7 @@ const JobCard = ({ job }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default JobCard
+export default JobCard;
