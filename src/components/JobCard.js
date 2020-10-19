@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 //----------- JobCard Comp | PARENT: JobContainer -----------------
-const JobCard = ({ jobDetail, handleJobSave, handleJobRemove }) => {
+const JobCard = ({ jobDetail, handleJobSave, handleJobRemove, jobToView }) => {
   const [add, setAdd] = useState(true);
   const [remove, setRemove] = useState(false);
   // ------------- JOB POSTED DATE -------------------------
@@ -22,7 +23,17 @@ const JobCard = ({ jobDetail, handleJobSave, handleJobRemove }) => {
           <p className="text-gray-500 text-sm">Posted on {jobPostDate}</p>
           <p className="text-xs text-gray-500">{jobDetail.type}</p>
         </div>
-        <h1 className="font-bold text-lg mt-2 mb-2">{jobDetail.title}</h1>
+        <h1 className="font-bold text-lg mt-2 mb-2">
+          <Link
+            onClick={() => {
+              jobToView(jobDetail.id);
+              window.scrollTo(0, 0);
+            }}
+            to={`/positions/${jobDetail.id}`}
+          >
+            {jobDetail.title}
+          </Link>
+        </h1>
         <h2 className="text-sm text-gray-800 mb-8">{jobDetail.company}</h2>
         <div className="flex justify-between">
           <p className="text-blue-600 text-sm mb-4 w-3/5">

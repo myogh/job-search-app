@@ -45,18 +45,18 @@ const Pagination = ({ numOfPages, handlePageChange, currentPage }) => {
 
         {/*-------------- lOOPING THROUGH EACH PAGINATION NUMBER ---------------------------*/}
 
-        {pages.map((i) => (
-          <li key={i}>
+        {pages.map((pageNum) => (
+          <li key={pageNum}>
             <a
-              onClick={() => handlePageChange(i)}
+              onClick={() => handlePageChange(pageNum)}
               href="#!"
               className={
-                i === currentPage
+                pageNum === currentPage
                   ? "focus:bg-indigo-600 bg-indigo-600 text-white px-2 py-1 focus:text-white border border-gray-400 hover:bg-indigo-300"
                   : "focus:bg-indigo-600 px-2 py-1 focus:text-white border border-gray-400 hover:bg-indigo-300"
               }
             >
-              {i}
+              {pageNum}
             </a>
           </li>
         ))}
