@@ -1,16 +1,17 @@
-import React from "react";
-import { useState } from "react";
+import React, { useContext } from "react";
 import comLogo from "../assets/images/com_logo.png";
+import { ThemeContext } from "../assets/themes";
 
 const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
-  const [add, setAdd] = useState(true);
-  const [remove, setRemove] = useState(false);
+  const theme = useContext(ThemeContext);
 
   return (
     <div>
       <div className="max-w-md sm:max-w-xl flex flex-col flex-wrap mx-auto px-2 sm:px-0">
         {/*----------- JOB TITLE --------------*/}
-        <section className="bg-white p-3 rounded-lg w-full -mt-10 flex flex-col sm:flex-row justify-center sm:justify-between px-10 items-center py-6">
+        <section
+          className={`${theme.bgColor} p-3 rounded-lg w-full -mt-20 flex flex-col sm:flex-row justify-center sm:justify-between px-10 items-center py-6`}
+        >
           <div className="flex sm:flex-row flex-col items-center">
             <img
               className="w-12 sm:w-16 sm:mr-4 sm:mb-0 mb-3"
@@ -18,10 +19,16 @@ const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
               alt="company logos"
             />
             <div className="flex flex-col text-center sm:items-start sm:justify-start">
-              <h1 className="text-md sm:text-lg font-bold truncate">
+              <h1
+                className={`text-md sm:text-lg ${theme.textColor} font-bold truncate`}
+              >
                 {jobInfo.company}
               </h1>
-              <h3 className="text-xs w-3/4 text-left">{jobInfo.location}</h3>
+              <h3
+                className={`text-xs w-full sm:w-3/4 text-left ${theme.textColor}`}
+              >
+                {jobInfo.location}
+              </h3>
             </div>
           </div>
 
@@ -39,11 +46,13 @@ const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
           </a>
         </section>
         {/* ---------- JOB DESCRIPTION ---------------- */}
-        <section className="bg-white p-10 mt-10 w-full rounded-lg">
-          <div className="flex flex-col sm:flex-row items-center justify-between">
+        <section className={`${theme.bgColor} p-10 mt-10 w-full rounded-lg`}>
+          <div className="flex flex-row items-center justify-between">
             <div className="w-full">
               <p className="text-xs text-gray-500 mb-2">{jobInfo.type}</p>
-              <h1 className="text-xl w-3/4 font-bold">{jobInfo.title}</h1>
+              <h1 className={`text-xl w-3/4 font-bold ${theme.textColor}`}>
+                {jobInfo.title}
+              </h1>
               <p className="text-xs text-blue-500 w-3/4 mt-2">
                 {jobInfo.location}
               </p>
@@ -53,11 +62,11 @@ const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
             </button> */}
             <div>
               <svg
-                className={add ? "text-blue-600 cursor-pointer" : "hidden"}
+                className={
+                  jobInfo.save ? "hidden" : "text-blue-600 cursor-pointer"
+                }
                 onClick={() => {
                   handleJobSave(jobInfo.id);
-                  setAdd(false);
-                  setRemove(true);
                 }}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -74,11 +83,11 @@ const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
                 />
               </svg>
               <svg
-                className={remove ? "text-blue-600 cursor-pointer" : "hidden"}
+                className={
+                  jobInfo.save ? "text-blue-600 cursor-pointer" : "hidden"
+                }
                 onClick={() => {
                   handleJobRemove(jobInfo.id);
-                  setRemove(false);
-                  setAdd(true);
                 }}
                 width="22"
                 height="22"
@@ -97,7 +106,7 @@ const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
               </svg>
             </div>
           </div>
-          <div className="mt-6 text-sm text-gray-700">
+          <div className={`mt-6 text-sm ${theme.textColor}`}>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Suspendisse molestie rutrum ante, in volutpat arcu. Maecenas ac
@@ -120,7 +129,7 @@ const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
               dapibus commodo.
             </p>
           </div>
-          <div className="text-gray-800 text-sm mt-8">
+          <div className={`text-sm mt-8 ${theme.textColor}`}>
             <h2 className="font-bold text-lg mb-2">Requirements</h2>
             <p>
               Aenean rutrum metus at mollis fermentum. In id ex eleifend, tempus
@@ -144,7 +153,7 @@ const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
               </li>
             </ul>
           </div>
-          <div className="text-gray-800 text-sm mt-8">
+          <div className={`${theme.textColor} text-sm mt-8`}>
             <h2 className="font-bold text-lg mb-2">What you will do:</h2>
             <p>
               Fusce fringilla sapien libero, non imperdiet massa interdum eget.

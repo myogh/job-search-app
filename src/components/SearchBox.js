@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import HeaderLogo from "../assets/images/laptop.svg";
+import { ThemeContext } from "../assets/themes";
 
 //------------- SearchBox App Parent: App ---------------------
 const SearchBox = ({ handleSearch, filterSearch }) => {
@@ -7,6 +8,8 @@ const SearchBox = ({ handleSearch, filterSearch }) => {
   const [location, setLocation] = useState("");
   const [needInput, setNeedInput] = useState(false);
   const [fullTime, setFullTime] = useState(false);
+
+  const theme = useContext(ThemeContext);
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
@@ -19,7 +22,7 @@ const SearchBox = ({ handleSearch, filterSearch }) => {
   return (
     <div>
       {/* Search Box Left and Image right container */}
-      <div className="flex justify-between items-center container -mt-8 lg:-mt-16 mx-auto px-10 sm:px-20">
+      <div className="flex justify-between items-center container -mt-16 lg:-mt-20 mx-auto px-10 sm:px-20">
         {/* SEARCH | FULL TIME | BUTTON */}
         <form
           onSubmit={(e) => {
@@ -34,7 +37,7 @@ const SearchBox = ({ handleSearch, filterSearch }) => {
             }
           }}
           id="search-terms"
-          className="lg:w-3/4 w-full mr-3 flex justify-between sm:justify-evenly bg-white shadow rounded py-2 lg:py-3 px-3"
+          className={`lg:w-3/4 w-full mr-3 flex justify-between sm:justify-evenly ${theme.bgColor} shadow rounded py-2 lg:py-3 px-3`}
         >
           {/* TWO SEARCH BOXES */}
           <div className="md:w-3/5 lg:w-3/4 flex p-2 pl-5">
@@ -60,8 +63,8 @@ const SearchBox = ({ handleSearch, filterSearch }) => {
               onClick={() => setNeedInput(false)}
               className={
                 needInput
-                  ? "w-full sm:w-1/2 border-b border-red-500 text-red-500 outline-none text-sm pb-1"
-                  : "w-full sm:w-1/2 sm:border-r border-gray-400 outline-none text-sm pb-1"
+                  ? `w-full sm:w-1/2 border-b border-red-500 text-red-500 outline-none ${theme.bgColor} ${theme.textColor} text-sm pb-1`
+                  : `w-full sm:w-1/2 sm:border-r border-gray-400 outline-none text-sm ${theme.bgColor} ${theme.textColor} pb-1`
               }
               type="text"
               placeholder={
@@ -93,7 +96,7 @@ const SearchBox = ({ handleSearch, filterSearch }) => {
             </svg>
             <input
               onChange={handleLocation}
-              className="hidden sm:block sm:w-1/2 sm:border-r sm:border-gray-400 sm:text-sm sm:outline-none sm:pb-1"
+              className={`hidden sm:block sm:w-1/2 sm:border-r sm:border-gray-400 sm:text-sm sm:outline-none sm:pb-1 ${theme.bgColor} ${theme.textColor}`}
               type="text"
               placeholder="Search"
             />
@@ -110,7 +113,11 @@ const SearchBox = ({ handleSearch, filterSearch }) => {
                   setFullTime((prv) => !prv);
                 }}
               />
-              <label className="text-sm font-semibold">Full Time</label>
+              <label
+                className={`text-sm font-semibold ${theme.bgColor} ${theme.textColor}`}
+              >
+                Full Time
+              </label>
             </div>
             <input
               className="text-white text-sm bg-blue-600 cursor-pointer outline-none focus:shadow-outline rounded-md px-3 py-1"

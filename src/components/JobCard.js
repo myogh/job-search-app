@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../assets/themes";
 
 //----------- JobCard Comp | PARENT: JobContainer -----------------
 const JobCard = ({ jobDetail, handleJobSave, handleJobRemove, jobToView }) => {
-  const [add, setAdd] = useState(true);
-  const [remove, setRemove] = useState(false);
+  // ----------------- USECONTEXT --------------------------
+  const theme = useContext(ThemeContext);
+
   // ------------- JOB POSTED DATE -------------------------
   const jobCreateDateArray = jobDetail.created_at.split(" ");
   const jobPostDate =
@@ -17,13 +19,13 @@ const JobCard = ({ jobDetail, handleJobSave, handleJobRemove, jobToView }) => {
   return (
     <div>
       <div
-        className={`p-6 bg-white rounded-lg border-b-8 border-${jobDetail.color}-500`}
+        className={`p-6 ${theme.bgColor} rounded-lg border-b-8 border-${jobDetail.color}-500`}
       >
         <div className="flex justify-between">
           <p className="text-gray-500 text-sm">Posted on {jobPostDate}</p>
           <p className="text-xs text-gray-500">{jobDetail.type}</p>
         </div>
-        <h1 className="font-bold text-lg mt-2 mb-2">
+        <h1 className={`font-bold text-lg ${theme.textColor} mt-2 mb-2`}>
           <Link
             onClick={() => {
               jobToView(jobDetail.id);
@@ -34,18 +36,20 @@ const JobCard = ({ jobDetail, handleJobSave, handleJobRemove, jobToView }) => {
             {jobDetail.title}
           </Link>
         </h1>
-        <h2 className="text-sm text-gray-800 mb-8">{jobDetail.company}</h2>
+        <h2 className={`text-sm ${theme.textColor} mb-8 select-none`}>
+          {jobDetail.company}
+        </h2>
         <div className="flex justify-between">
-          <p className="text-blue-600 text-sm mb-4 w-3/5">
+          <p className="text-blue-500 select-none text-sm mb-4 w-3/5">
             {jobDetail.location}
           </p>
-
+          {/* --------------- SAVE JOB ICON ----------------------- */}
           <svg
-            className={add ? "text-blue-600 cursor-pointer" : "hidden"}
+            className={
+              jobDetail.save ? "hidden" : "text-blue-500 cursor-pointer"
+            }
             onClick={() => {
               handleJobSave(jobDetail.id);
-              setAdd(false);
-              setRemove(true);
             }}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -62,11 +66,11 @@ const JobCard = ({ jobDetail, handleJobSave, handleJobRemove, jobToView }) => {
             />
           </svg>
           <svg
-            className={remove ? "text-blue-600 cursor-pointer" : "hidden"}
+            className={
+              jobDetail.save ? "text-blue-600 cursor-pointer" : "hidden"
+            }
             onClick={() => {
               handleJobRemove(jobDetail.id);
-              setRemove(false);
-              setAdd(true);
             }}
             width="22"
             height="22"

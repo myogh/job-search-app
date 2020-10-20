@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../assets/themes";
 
 // ---------------- Pagination Component ------------------------
 const Pagination = ({ numOfPages, handlePageChange, currentPage }) => {
@@ -7,6 +8,8 @@ const Pagination = ({ numOfPages, handlePageChange, currentPage }) => {
   for (let i = 1; i <= numOfPages; i++) {
     pages.push(i);
   }
+
+  const theme = useContext(ThemeContext);
 
   return (
     <div id="pagination" className="mb-8">
@@ -22,7 +25,7 @@ const Pagination = ({ numOfPages, handlePageChange, currentPage }) => {
               }
             }}
             href="#!"
-            className="focus:bg-indigo-600 px-2 py-1 focus:text-white border border-gray-400 hover:bg-indigo-300"
+            className={`focus:bg-indigo-600 px-2 py-1 focus:text-white border ${theme.textColor} border-gray-400 hover:bg-indigo-300`}
           >
             <svg
               className="inline"
@@ -53,7 +56,7 @@ const Pagination = ({ numOfPages, handlePageChange, currentPage }) => {
               className={
                 pageNum === currentPage
                   ? "focus:bg-indigo-600 bg-indigo-600 text-white px-2 py-1 focus:text-white border border-gray-400 hover:bg-indigo-300"
-                  : "focus:bg-indigo-600 px-2 py-1 focus:text-white border border-gray-400 hover:bg-indigo-300"
+                  : `focus:bg-indigo-600 px-2 py-1 focus:text-white border ${theme.textColor} border-gray-400 hover:bg-indigo-300`
               }
             >
               {pageNum}
@@ -72,7 +75,7 @@ const Pagination = ({ numOfPages, handlePageChange, currentPage }) => {
               }
             }}
             href="#!"
-            className="focus:bg-indigo-600 px-2 py-1 focus:text-white border border-gray-400 hover:bg-indigo-300"
+            className={`focus:bg-indigo-600 px-2 py-1 focus:text-white border ${theme.textColor} border-gray-400 hover:bg-indigo-300`}
           >
             <svg
               className="inline"
