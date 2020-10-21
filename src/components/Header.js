@@ -6,7 +6,7 @@ const Header = ({ savedJobs, handleNightMode, nightMode }) => {
     <div>
       <div className="header">
         {/* NAV BAR CONTAINER */}
-        <nav className="container mx-auto flex pt-8 pb-16 lg:pb-24 px-12 justify-between">
+        <nav className="container mx-auto flex pt-8 pb-16 lg:pb-24 px-12 justify-between items-baseline">
           <h1 className="text-2xl text-white font-bold">
             <Link to="/">devjobs</Link>
           </h1>

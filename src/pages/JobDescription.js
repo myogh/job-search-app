@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
 import comLogo from "../assets/images/com_logo.png";
 import { ThemeContext } from "../assets/themes";
+import parse from "html-react-parser";
 
 const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
   const theme = useContext(ThemeContext);
+  const jobDes = jobInfo.description.replace(/\n/g, "<br/>");
 
   return (
     <div>
-      <div className="max-w-md sm:max-w-xl flex flex-col flex-wrap mx-auto px-2 sm:px-0">
+      <div className="max-w-md sm:max-w-xl flex flex-col flex-wrap mx-auto px-2 sm:px-0 mb-10">
         {/*----------- JOB TITLE --------------*/}
         <section
           className={`${theme.bgColor} p-3 rounded-lg w-full -mt-20 flex flex-col sm:flex-row justify-center sm:justify-between px-10 items-center py-6`}
@@ -25,7 +27,7 @@ const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
                 {jobInfo.company}
               </h1>
               <h3
-                className={`text-xs w-full sm:w-3/4 text-left ${theme.textColor}`}
+                className={`text-xs w-full sm:w-3/4 text-center sm:text-left ${theme.textColor}`}
               >
                 {jobInfo.location}
               </h3>
@@ -57,9 +59,6 @@ const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
                 {jobInfo.location}
               </p>
             </div>
-            {/* <button className="bg-indigo-600 mt-6 w-full sm:w-2/5 sm:mt-0 px-3 py-2 rounded text-sm text-white">
-              Save
-            </button> */}
             <div>
               <svg
                 className={
@@ -107,81 +106,7 @@ const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
             </div>
           </div>
           <div className={`mt-6 text-sm ${theme.textColor}`}>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse molestie rutrum ante, in volutpat arcu. Maecenas ac
-              scelerisque quam. Pellentesque iaculis, massa sagittis interdum
-              suscipit, odio nunc convallis lorem, nec ullamcorper ex risus non
-              orci. Ut imperdiet feugiat felis, vel semper augue commodo id. Sed
-              posuere ligula porta molestie dignissim. Duis nec nisl volutpat,
-              volutpat mi ac, gravida risus. Nulla luctus volutpat tincidunt.
-              Suspendisse potenti.
-            </p>
-            <br />
-            <p>
-              Maecenas quis lorem vitae tortor commodo scelerisque in nec
-              ligula. Donec ipsum mauris, vehicula nec enim a, placerat varius
-              odio. Nullam suscipit id ex vel scelerisque. Aenean rutrum metus
-              at mollis fermentum. In id ex eleifend, tempus ipsum elementum,
-              ornare dolor. Fusce fringilla sapien libero, non imperdiet massa
-              interdum eget. Suspendisse potenti. Proin vestibulum consequat
-              felis, scelerisque rutrum ante commodo non. Praesent efficitur
-              dapibus commodo.
-            </p>
-          </div>
-          <div className={`text-sm mt-8 ${theme.textColor}`}>
-            <h2 className="font-bold text-lg mb-2">Requirements</h2>
-            <p>
-              Aenean rutrum metus at mollis fermentum. In id ex eleifend, tempus
-              ipsum elementum, ornare dolor. Fusce fringilla sapien libero, non
-              imperdiet massa interdum eget. Suspendisse potenti. Proin
-              vestibulum consequat felis, scelerisque rutrum ante commodo non.
-              Praesent efficitur dapibus commodo. Cras quam turpis, facilisis
-              euismod consequat id, pharetra vitae nisl. Sed sodales volutpat
-              porta.
-            </p>
-            <ul className="list-disc pl-5 mt-2">
-              <li className="mb-2">
-                Fusce fringilla sapien libero, non imperdiet massa interdum eget
-              </li>
-              <li className="mb-2">
-                Vestibulum vel egestas enim, eget consequat nulla
-              </li>
-              <li className="mb-2">Sed sodales volutpat porta</li>
-              <li className="mb-2">
-                Proin vestibulum consequat felis, scelerisque rutrum ante
-              </li>
-            </ul>
-          </div>
-          <div className={`${theme.textColor} text-sm mt-8`}>
-            <h2 className="font-bold text-lg mb-2">What you will do:</h2>
-            <p>
-              Fusce fringilla sapien libero, non imperdiet massa interdum eget.
-              Suspendisse potenti. Proin vestibulum consequat felis, scelerisque
-              rutrum ante commodo non. Praesent efficitur dapibus commodo. Cras
-              quam turpis, facilisis euismod consequat id, pharetra vitae nisl.
-              Sed sodales volutpat porta.
-            </p>
-            <br />
-            <p>
-              Pellentesque iaculis, massa sagittis interdum suscipit, odio nunc
-              convallis lorem, nec ullamcorper ex risus non orci. Ut imperdiet
-              feugiat felis, vel semper augue commodo id. Sed posuere ligula
-              porta molestie dignissim. Duis nec nisl volutpat, volutpat mi ac,
-              gravida risus.
-            </p>
-            <ul className="list-decimal pl-5 mt-2">
-              <li className="mb-2">
-                Fusce fringilla sapien libero, non imperdiet massa interdum eget
-              </li>
-              <li className="mb-2">
-                Vestibulum vel egestas enim, eget consequat nulla
-              </li>
-              <li className="mb-2">Sed sodales volutpat porta</li>
-              <li className="mb-2">
-                Proin vestibulum consequat felis, scelerisque rutrum ante
-              </li>
-            </ul>
+            {parse(jobDes)}
           </div>
         </section>
         <section className="bg-indigo-700 text-white w-full p-10 mt-6 mb-6 rounded-md bg-svg">
@@ -193,12 +118,9 @@ const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
             Suspendisse potenti. Proin vestibulum consequat felis, scelerisque
             rutrum ante commodo non. Praesent efficitur dapibus commodo.
           </p>
-          <a
-            className="text-xs underline break-words"
-            href="https://jobs.academicwork.se/annons/fullstackutvecklare-till-group-it-pa-academic-work/15045291"
-          >
-            {jobInfo.how_to_apply}
-          </a>
+          <div className="text-xs break-words underline">
+            {parse(jobInfo.how_to_apply)}
+          </div>
         </section>
       </div>
     </div>

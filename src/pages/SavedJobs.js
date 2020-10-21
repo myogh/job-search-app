@@ -1,21 +1,16 @@
 import React from "react";
 import { useContext } from "react";
 import { ThemeContext } from "../assets/themes";
-import JobCard from "./JobCard";
+import JobCard from "../components/JobCard";
 
 // --------- JobsContainer Comp | Parent: App --------------------
-const JobsContainer = ({
-  joblist,
-  handleJobSave,
-  handleJobRemove,
-  jobToView,
-}) => {
+const SavedJobs = ({ joblist, handleJobSave, handleJobRemove, jobToView }) => {
   const theme = useContext(ThemeContext);
   return (
     <div>
       <div className="container mx-auto mt-20 px-8 sm:px-16">
         <h1
-          className={`${theme.bgColor} ${theme.textColor} p-5 text-lg rounded max-w-md tracking-wider -mt-40 sm:-mt-32 mx-auto text-center mb-10`}
+          className={`${theme.bgColor} ${theme.textColor} p-5 text-lg rounded max-w-md tracking-wide font-bold -mt-40 sm:-mt-32 mx-auto text-center mb-10`}
         >
           Saved Developer Positions
         </h1>
@@ -41,4 +36,4 @@ const JobsContainer = ({
   );
 };
 
-export default JobsContainer;
+export default SavedJobs;

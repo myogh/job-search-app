@@ -19,14 +19,13 @@ const JobsContainer = ({
       <div className="container mx-auto mt-20 px-8 sm:px-16 mb-20">
         {loading ? (
           <img
-            className="w-1/5 sm:max-w-sm mx-auto"
+            className="w-1/5 sm:w-1/6 sm:max-w-sm mx-auto"
             src={loadingSvg}
             alt="loading animation"
           />
-        ) : // <div className="text-center text-3xl">Loading...</div>
-        joblist.length > 0 ? (
+        ) : joblist.length > 0 ? (
           <div>
-            <div className="w-full grid md:grid-cols-2 xl:grid-cols-3 grid-flow-row-dense gap-8 mb-10">
+            <div className="w-full grid md:grid-cols-2 xl:grid-cols-3 gap-8 mb-10">
               {joblist.map((job) => (
                 <JobCard
                   key={job.id}

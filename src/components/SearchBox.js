@@ -7,7 +7,6 @@ const SearchBox = ({ handleSearch, filterSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [location, setLocation] = useState("");
   const [needInput, setNeedInput] = useState(false);
-  const [fullTime, setFullTime] = useState(false);
 
   const theme = useContext(ThemeContext);
 
@@ -32,7 +31,6 @@ const SearchBox = ({ handleSearch, filterSearch }) => {
             } else {
               setNeedInput(false);
               handleSearch(searchTerm, location);
-              filterSearch(fullTime);
               setSearchTerm("");
             }
           }}
@@ -63,12 +61,14 @@ const SearchBox = ({ handleSearch, filterSearch }) => {
               onClick={() => setNeedInput(false)}
               className={
                 needInput
-                  ? `w-full sm:w-1/2 border-b border-red-500 text-red-500 outline-none ${theme.bgColor} ${theme.textColor} text-sm pb-1`
-                  : `w-full sm:w-1/2 sm:border-r border-gray-400 outline-none text-sm ${theme.bgColor} ${theme.textColor} pb-1`
+                  ? `w-full sm:w-1/2 border-b border-red-500 text-red-500 outline-none ${theme.bgColor} ${theme.textColor} text-xs lg:text-sm pb-1`
+                  : `w-full sm:w-1/2 sm:border-r border-gray-400 outline-none text-xs lg:text-sm ${theme.bgColor} ${theme.textColor} pb-1 truncate`
               }
               type="text"
               placeholder={
-                needInput ? "Please enter a keyword..." : "Java, python, etc."
+                needInput
+                  ? "Please enter a keyword..."
+                  : "front-end, python, etc."
               }
               value={searchTerm}
             />
@@ -96,7 +96,7 @@ const SearchBox = ({ handleSearch, filterSearch }) => {
             </svg>
             <input
               onChange={handleLocation}
-              className={`hidden sm:block sm:w-1/2 sm:border-r sm:border-gray-400 sm:text-sm sm:outline-none sm:pb-1 ${theme.bgColor} ${theme.textColor}`}
+              className={`hidden sm:block sm:w-1/2 sm:border-r sm:border-gray-400 lg:text-sm text-xs sm:outline-none sm:pb-1 ${theme.bgColor} ${theme.textColor}`}
               type="text"
               placeholder="Search"
             />
@@ -110,7 +110,7 @@ const SearchBox = ({ handleSearch, filterSearch }) => {
                 placeholder="Search"
                 value="full_time"
                 onChange={() => {
-                  setFullTime((prv) => !prv);
+                  filterSearch();
                 }}
               />
               <label

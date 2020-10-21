@@ -25,7 +25,7 @@ const Pagination = ({ numOfPages, handlePageChange, currentPage }) => {
               }
             }}
             href="#!"
-            className={`focus:bg-indigo-600 px-2 py-1 focus:text-white border ${theme.textColor} border-gray-400 hover:bg-indigo-300`}
+            className={`focus:bg-indigo-600 px-2 py-1 focus:text-white border ${theme.textColor} ${theme.borderColor} rounded-sm hover:bg-indigo-300`}
           >
             <svg
               className="inline"
@@ -55,8 +55,8 @@ const Pagination = ({ numOfPages, handlePageChange, currentPage }) => {
               href="#!"
               className={
                 pageNum === currentPage
-                  ? "focus:bg-indigo-600 bg-indigo-600 text-white px-2 py-1 focus:text-white border border-gray-400 hover:bg-indigo-300"
-                  : `focus:bg-indigo-600 px-2 py-1 focus:text-white border ${theme.textColor} border-gray-400 hover:bg-indigo-300`
+                  ? "focus:bg-indigo-600 bg-indigo-600 text-white px-2 py-1 focus:text-white border rounded-sm border-gray-400 hover:bg-indigo-300"
+                  : `focus:bg-indigo-600 px-2 py-1 focus:text-white border ${theme.textColor} ${theme.borderColor} rounded-sm hover:bg-indigo-300`
               }
             >
               {pageNum}
@@ -68,14 +68,14 @@ const Pagination = ({ numOfPages, handlePageChange, currentPage }) => {
         <li>
           <a
             onClick={() => {
-              if (currentPage > 0) {
+              if (currentPage < numOfPages) {
                 handlePageChange(currentPage + 1);
-              } else if (currentPage > numOfPages) {
+              } else {
                 handlePageChange(currentPage);
               }
             }}
             href="#!"
-            className={`focus:bg-indigo-600 px-2 py-1 focus:text-white border ${theme.textColor} border-gray-400 hover:bg-indigo-300`}
+            className={`focus:bg-indigo-600 px-2 py-1 focus:text-white border ${theme.textColor} ${theme.borderColor} rounded-sm hover:bg-indigo-300`}
           >
             <svg
               className="inline"

@@ -19,13 +19,15 @@ const JobCard = ({ jobDetail, handleJobSave, handleJobRemove, jobToView }) => {
   return (
     <div>
       <div
-        className={`p-6 ${theme.bgColor} rounded-lg border-b-8 border-${jobDetail.color}-500`}
+        className={`p-6 ${theme.bgColor} hover:shadow-lg rounded-lg border-b-8 border-${jobDetail.color}-500`}
       >
         <div className="flex justify-between">
           <p className="text-gray-500 text-sm">Posted on {jobPostDate}</p>
           <p className="text-xs text-gray-500">{jobDetail.type}</p>
         </div>
-        <h1 className={`font-bold text-lg ${theme.textColor} mt-2 mb-2`}>
+        <h1
+          className={`font-bold text-lg ${theme.textColor} underline mt-2 mb-2`}
+        >
           <Link
             onClick={() => {
               jobToView(jobDetail.id);
@@ -33,7 +35,9 @@ const JobCard = ({ jobDetail, handleJobSave, handleJobRemove, jobToView }) => {
             }}
             to={`/positions/${jobDetail.id}`}
           >
-            {jobDetail.title}
+            {jobDetail.title.length > 45
+              ? jobDetail.title.slice(0, 45) + "..."
+              : jobDetail.title}
           </Link>
         </h1>
         <h2 className={`text-sm ${theme.textColor} mb-8 select-none`}>
@@ -41,9 +45,11 @@ const JobCard = ({ jobDetail, handleJobSave, handleJobRemove, jobToView }) => {
         </h2>
         <div className="flex justify-between">
           <p className="text-blue-500 select-none text-sm mb-4 w-3/5">
-            {jobDetail.location}
+            {jobDetail.location.length > 30
+              ? jobDetail.location.slice(0, 30) + "..."
+              : jobDetail.location}
           </p>
-          {/* --------------- SAVE JOB ICON ----------------------- */}
+          {/* --------------- JOB SAVING ICON ----------------------- */}
           <svg
             className={
               jobDetail.save ? "hidden" : "text-blue-500 cursor-pointer"
