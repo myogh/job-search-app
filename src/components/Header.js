@@ -11,7 +11,7 @@ const Header = ({ savedJobs, handleNightMode, nightMode }) => {
             <Link to="/">devjobs</Link>
           </h1>
           <div className="flex items-center">
-            <p className="mr-8 sm:mr-12 text-white font-bold">
+            <p className="mr-8 sm:mr-12 text-white font-bold hover:bg-indigo-600 rounded-sm px-2 py-1 saved">
               <Link to="/saved-jobs">
                 {" "}
                 Saved{" "}

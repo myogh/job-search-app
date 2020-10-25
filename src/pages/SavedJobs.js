@@ -1,4 +1,5 @@
-import React from "react";
+import gsap from "gsap";
+import React, { useEffect } from "react";
 import { useContext } from "react";
 import { ThemeContext } from "../assets/themes";
 import JobCard from "../components/JobCard";
@@ -6,8 +7,22 @@ import JobCard from "../components/JobCard";
 // --------- JobsContainer Comp | Parent: App --------------------
 const SavedJobs = ({ joblist, handleJobSave, handleJobRemove, jobToView }) => {
   const theme = useContext(ThemeContext);
+
+  useEffect(() => {
+    gsap.to("#savedJobsSection", {
+      duration: 0.85,
+      x: "100%",
+      borderRadius: "90%",
+      ease: "expo.out",
+    });
+  }, []);
+
   return (
     <div>
+      <div
+        id="savedJobsSection"
+        className="fixed inset-0 min-h-full min-w-full bg-indigo-600"
+      ></div>
       <div className="container mx-auto mt-20 px-8 sm:px-16">
         <h1
           className={`${theme.bgColor} ${theme.textColor} p-5 text-lg rounded max-w-md tracking-wide font-bold -mt-40 sm:-mt-32 mx-auto text-center mb-10`}

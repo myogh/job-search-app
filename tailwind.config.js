@@ -21,6 +21,10 @@ module.exports = {
           900: "#413b99",
         },
       },
+      boxShadow: {
+        blue: "0 5px 7px #95fcf7",
+        white: "0 5px 7px #ffffff",
+      },
     },
   },
   variants: {

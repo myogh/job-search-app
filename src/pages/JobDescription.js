@@ -1,14 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import comLogo from "../assets/images/com_logo.png";
 import { ThemeContext } from "../assets/themes";
 import parse from "html-react-parser";
+import gsap from "gsap";
 
 const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
   const theme = useContext(ThemeContext);
   const jobDes = jobInfo.description.replace(/\n/g, "<br/>");
 
+  useEffect(() => {
+    gsap.to("#des", {
+      duration: 1.25,
+      x: "100%",
+      borderRadius: "80%",
+      ease: "expo.out",
+    });
+  }, []);
   return (
     <div>
+      <div
+        id="des"
+        className="fixed inset-0 min-w-full min-h-full bg-indigo-600"
+      ></div>
       <div className="max-w-md sm:max-w-xl flex flex-col flex-wrap mx-auto px-2 sm:px-0 mb-10">
         {/*----------- JOB TITLE --------------*/}
         <section

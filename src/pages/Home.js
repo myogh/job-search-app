@@ -89,9 +89,14 @@ function Home() {
     setPageNumber(pageId);
   };
 
-  // ---------------- FOR JOB DESCRIBTION  ---------------------------
-  const jobToView = (id) => {
+  // ---------------- JOB TO VIEW IN DESCRIBTION SECTION ---------------------------
+  const viewSavedJobs = (id) => {
     const jobView = savedJobList.filter((job) => job.id === id);
+    setJobToDescribe(...jobView);
+  };
+
+  const jobToView = (id) => {
+    const jobView = jobList.filter((job) => job.id === id);
     setJobToDescribe(...jobView);
   };
 
@@ -153,7 +158,7 @@ function Home() {
               joblist={savedJobList}
               handleJobSave={handleSave}
               handleJobRemove={handleRemove}
-              jobToView={jobToView}
+              jobToView={viewSavedJobs}
             />
           </Route>
         </Switch>

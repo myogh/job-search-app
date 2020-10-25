@@ -19,7 +19,7 @@ const JobCard = ({ jobDetail, handleJobSave, handleJobRemove, jobToView }) => {
   return (
     <div>
       <div
-        className={`p-6 ${theme.bgColor} hover:shadow-lg rounded-lg border-b-8 border-${jobDetail.color}-500`}
+        className={`job-card p-6 ${theme.bgColor} ${theme.shadow} hover:translate-x-6 rounded-lg border-b-8 border-${jobDetail.color}-500`}
       >
         <div className="flex justify-between">
           <p className="text-gray-500 text-sm">Posted on {jobPostDate}</p>

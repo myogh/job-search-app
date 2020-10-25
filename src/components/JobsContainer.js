@@ -3,6 +3,7 @@ import JobCard from "./JobCard";
 import Pagination from "./Pagination";
 import notFoundImg from "../assets/images/void.svg";
 import loadingSvg from "../assets/images/loading.svg";
+
 // --------- JobsContainer Comp | Parent: App --------------------
 const JobsContainer = ({
   joblist,

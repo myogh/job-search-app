@@ -6,14 +6,19 @@
   height: 200px;
 }
 
-/* body {
-  background-color: #e2e8f0;
-  margin: 0;
-} */
-
 .bg-svg {
   background-image: url("./images/how_to_apply.svg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
+}
+
+.search-box,
+.saved {
+  transition: all 200ms ease-in;
+}
+
+.job-card:hover {
+  transform: translateY(-4px);
+  transition: all 100ms ease-in;
 }
