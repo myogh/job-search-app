@@ -2,7 +2,6 @@
   "name": "job-search-app",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://jobs.github.com",
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^3.0.0",
     "@testing-library/jest-dom": "^4.2.4",

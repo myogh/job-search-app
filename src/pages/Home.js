@@ -21,7 +21,9 @@ function Home() {
   //-------------- DATA FETCHING UPON DOCUMENT LOAD ------------------------
   useEffect(() => {
     setLoading(true);
-    fetch(`/positions.json?description=`)
+    fetch(
+      `https://quiet-falls-57201.herokuapp.com/https://jobs.github.com/positions.json?description=`
+    )
       .then((response) => response.json())
       .then((data) => {
         const newData = data.map((eachData) =>
@@ -39,7 +41,9 @@ function Home() {
   // -------------- HANDLE SEARCH BUTTON CLICK ---------------------
   const handleSearch = (searchTerm, locationTerm) => {
     setLoading(true);
-    fetch(`/positions.json?description=${searchTerm}&location=${locationTerm}`)
+    fetch(
+      `https://quiet-falls-57201.herokuapp.com/https://jobs.github.com/positions.json?description=${searchTerm}&location=${locationTerm}`
+    )
       .then((response) => response.json())
       .then((data) => {
         const newData = data.map((eachData) =>
