@@ -145,7 +145,7 @@ const SearchBox = ({ handleSearch, filterSearch }) => {
               </label>
             </div>
             <input
-              className="text-white text-sm bg-blue-600 cursor-pointer outline-none focus:shadow-outline rounded-md px-3 py-1"
+              className="text-white text-sm bg-indigo-600 cursor-pointer outline-none focus:shadow-outline rounded-md px-3 py-1"
               type="submit"
               value="Search"
             />
