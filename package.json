@@ -18,6 +18,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "watch": "postcss src/assets/tailwind.css -o src/assets/main.css --watch",
+    "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
