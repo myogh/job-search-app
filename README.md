@@ -24,7 +24,7 @@
 <br>
 <br>
 
-## Saved Jobs and Full Job Description
+## Saved Jobs Section
 
 - Interesting jobs can be saved for later reference.
   <br>
