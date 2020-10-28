@@ -88,6 +88,15 @@ function Home() {
     setSavedJob(sv);
   };
 
+  const handleRemoveAll = () => {
+    const jobListMarkedSaved = jobList.map((job) => {
+      job.save = false;
+      return job;
+    });
+    setJobList(jobListMarkedSaved);
+    setSavedJob([]);
+  };
+
   // ---------------- HANDLE PAGE NUMBER ---------------------------
   const handlePageChange = (pageId) => {
     setPageNumber(pageId);
@@ -163,6 +172,7 @@ function Home() {
               handleJobSave={handleSave}
               handleJobRemove={handleRemove}
               jobToView={viewSavedJobs}
+              handleRemoveAll={handleRemoveAll}
             />
           </Route>
         </Switch>
