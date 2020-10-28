@@ -1,4 +1,4 @@
-# Dev Jobs Searching Website
+## Dev Jobs Searching Website
 
 ![Web Siting Browsing](/src/assets/images/browsing.gif)
 <br>
@@ -30,3 +30,8 @@
   <br>
 
 ![Web Siting Browsing](/src/assets/images/save.gif)
+
+## Credits
+
+- Certain illustrations in the website are utilized from [unDraw](https://undraw.co).
+- The whole website design is partly inspired from one of the challenges of [frontendmentor](https://frontendmentor.io).
