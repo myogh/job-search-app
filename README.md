@@ -1,4 +1,4 @@
-## Dev Jobs Searching Website
+## Job Searching Website For Developers
 
 ![Web Siting Browsing](/src/assets/images/browsing.gif)
 <br>
@@ -24,7 +24,7 @@
 <br>
 <br>
 
-## Saved Jobs Section
+## A Dedicated Section to Save Jobs
 
 - Interesting jobs can be saved for later reference.
   <br>
