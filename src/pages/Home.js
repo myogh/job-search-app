@@ -78,13 +78,13 @@ function Home() {
 
   const handleRemove = (id) => {
     const sv = savedJobList.filter((job) => job.id !== id);
-    const jobListMarkedSaved = jobList.map((job) => {
+    const jobListMarked = jobList.map((job) => {
       if (job.id === id) {
         job.save = false;
       }
       return job;
     });
-    setJobList(jobListMarkedSaved);
+    setJobList(jobListMarked);
     setSavedJob(sv);
   };
 
