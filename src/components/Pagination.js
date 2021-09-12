@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { ThemeContext } from "../assets/themes";
 
 // ---------------- Pagination Component ------------------------
@@ -50,9 +51,9 @@ const Pagination = ({ numOfPages, handlePageChange, currentPage }) => {
 
         {pages.map((pageNum) => (
           <li key={pageNum}>
-            <a
+            <Link
               onClick={() => handlePageChange(pageNum)}
-              href="#!"
+              to={`/jobs/${pageNum}`}
               className={
                 pageNum === currentPage
                   ? "focus:bg-indigo-600 bg-indigo-600 text-white px-2 py-1 focus:text-white border rounded-sm border-gray-400 hover:bg-indigo-300"
@@ -60,7 +61,7 @@ const Pagination = ({ numOfPages, handlePageChange, currentPage }) => {
               }
             >
               {pageNum}
-            </a>
+            </Link>
           </li>
         ))}
 

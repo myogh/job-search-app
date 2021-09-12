@@ -6,7 +6,6 @@ import gsap from "gsap";
 
 const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
   const theme = useContext(ThemeContext);
-  const jobDes = jobInfo.description.replace(/\n/g, "<br/>");
 
   useEffect(() => {
     gsap.to("#des", {
@@ -37,22 +36,22 @@ const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
               <h1
                 className={`text-md sm:text-lg ${theme.textColor} font-bold truncate`}
               >
-                {jobInfo.company}
+                {jobInfo.company_name}
               </h1>
-              <h3
+              {/* <h3
                 className={`text-xs w-full sm:w-3/4 text-center sm:text-left ${theme.textColor}`}
               >
                 {jobInfo.location}
-              </h3>
+              </h3> */}
             </div>
           </div>
 
           <a
-            href={jobInfo.company_url}
+            href={jobInfo.url}
             target="__blank"
             type="button"
             className={
-              jobInfo.company_url === null
+              jobInfo.url === null
                 ? "hidden"
                 : "block w-3/4 text-center sm:w-1/4 mt-6 sm:mt-0 bg-indigo-700 p-2 text-sm text-white rounded-md"
             }
@@ -68,9 +67,9 @@ const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
               <h1 className={`text-xl w-3/4 font-bold ${theme.textColor}`}>
                 {jobInfo.title}
               </h1>
-              <p className="text-xs text-blue-500 w-3/4 mt-2">
+              {/* <p className="text-xs text-blue-500 w-3/4 mt-2">
                 {jobInfo.location}
-              </p>
+              </p> */}
             </div>
             <div>
               <svg
@@ -119,10 +118,10 @@ const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
             </div>
           </div>
           <div className={`mt-6 text-sm ${theme.textColor}`}>
-            {parse(jobDes)}
+            {parse(jobInfo.description)}
           </div>
         </section>
-        <section className="bg-indigo-700 text-white w-full p-10 mt-6 mb-6 rounded-md bg-svg">
+        {/* <section className="bg-indigo-700 text-white w-full p-10 mt-6 mb-6 rounded-md bg-svg">
           <h1 className="font-bold text-lg mb-4">How to Apply</h1>
           <p className="text-sm mb-4">
             Nullam suscipit id ex vel scelerisque. Aenean rutrum metus at mollis
@@ -134,7 +133,7 @@ const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
           <div className="text-xs break-words underline">
             {parse(jobInfo.how_to_apply)}
           </div>
-        </section>
+        </section> */}
       </div>
     </div>
   );

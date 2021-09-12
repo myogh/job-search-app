@@ -8,13 +8,13 @@ const JobCard = ({ jobDetail, handleJobSave, handleJobRemove, jobToView }) => {
   const theme = useContext(ThemeContext);
 
   // ------------- JOB POSTED DATE -------------------------
-  const jobCreateDateArray = jobDetail.created_at.split(" ");
-  const jobPostDate =
-    jobCreateDateArray[1] +
-    " " +
-    jobCreateDateArray[2] +
-    " " +
-    jobCreateDateArray[5];
+  // const jobCreateDateArray = jobDetail.created_at.split(" ");
+  const jobPostDate = new Date(jobDetail.publication_date).toDateString();
+    // jobCreateDateArray[1] +
+    // " " +
+    // jobCreateDateArray[2] +
+    // " " +
+    // jobCreateDateArray[5];
 
   return (
     <div>
@@ -33,7 +33,7 @@ const JobCard = ({ jobDetail, handleJobSave, handleJobRemove, jobToView }) => {
               jobToView(jobDetail.id);
               window.scrollTo(0, 0);
             }}
-            to={`/positions/${jobDetail.id}`}
+            to={`/description/${jobDetail.id}`}
           >
             {jobDetail.title.length > 45
               ? jobDetail.title.slice(0, 45) + "..."
@@ -41,13 +41,13 @@ const JobCard = ({ jobDetail, handleJobSave, handleJobRemove, jobToView }) => {
           </Link>
         </h1>
         <h2 className={`text-sm ${theme.textColor} mb-8 select-none`}>
-          {jobDetail.company}
+          {jobDetail.company_name}
         </h2>
         <div className="flex justify-between">
           <p className="text-blue-500 select-none text-sm mb-4 w-3/5">
-            {jobDetail.location.length > 30
-              ? jobDetail.location.slice(0, 30) + "..."
-              : jobDetail.location}
+            {jobDetail.candidate_required_location.length > 30
+              ? jobDetail.candidate_required_location.slice(0, 30) + "..."
+              : jobDetail.candidate_required_location}
           </p>
           {/* --------------- JOB SAVING ICON ----------------------- */}
           <svg

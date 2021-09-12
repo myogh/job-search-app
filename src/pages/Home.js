@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { colors } from "../assets/colors";
 import { ThemeContext, themes } from "../assets/themes";
 import Header from "../components/Header";
@@ -22,11 +22,12 @@ function Home() {
   useEffect(() => {
     setLoading(true);
     fetch(
-      `https://quiet-falls-57201.herokuapp.com/https://jobs.github.com/positions.json?description=`
+      // `https://quiet-falls-57201.herokuapp.com/https://jobs.github.com/positions.json?description=`
+      `https://remotive.io/api/remote-jobs?category=software-dev`
     )
       .then((response) => response.json())
       .then((data) => {
-        const newData = data.map((eachData) =>
+        const newData = data.jobs.map((eachData) =>
           // Adding color property to incoming data
           Object.assign({}, eachData, {
             color: colors[Math.floor(Math.random() * 40)],
@@ -42,7 +43,8 @@ function Home() {
   const handleSearch = (searchTerm, locationTerm) => {
     setLoading(true);
     fetch(
-      `https://quiet-falls-57201.herokuapp.com/https://jobs.github.com/positions.json?description=${searchTerm}&location=${locationTerm}`
+      // `https://quiet-falls-57201.herokuapp.com/https://jobs.github.com/positions.json?description=${searchTerm}&location=${locationTerm}`
+      `https://remotive.io/api/remote-jobs?category=software-dev`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -130,7 +132,7 @@ function Home() {
 
   // --------------- Filtering results - full time or not ----------------------
   const filteredResult = fullTime
-    ? postInOnePage.filter((job) => job.type === "Full Time")
+    ? postInOnePage.filter((job) => job.type_type === "Full Time")
     : postInOnePage;
 
   // ----------- MAIN APP COMPONENT RETURN ------------------------
@@ -143,7 +145,8 @@ function Home() {
           nightMode={nightMode}
         />
         <Switch>
-          <Route exact path="/">
+          <Redirect exact from="/" to="/jobs/1" />
+          <Route exact path="/jobs/:id">
             <SearchBox
               handleSearch={handleSearch}
               filterSearch={filterSearch}
@@ -159,7 +162,7 @@ function Home() {
               currentPage={pageNumber}
             />
           </Route>
-          <Route path="/positions/">
+          <Route path="/description/">
             <JobDescription
               jobInfo={jobForDescription}
               handleJobRemove={handleRemove}
