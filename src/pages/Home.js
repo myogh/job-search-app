@@ -23,7 +23,7 @@ function Home() {
     setLoading(true);
     fetch(
       // `https://quiet-falls-57201.herokuapp.com/https://jobs.github.com/positions.json?description=`
-      `https://remotive.io/api/remote-jobs?category=software-dev`
+      `https://remotive.io/api/remote-jobs?category=software-dev&limit=100`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -40,15 +40,15 @@ function Home() {
   }, []);
 
   // -------------- HANDLE SEARCH BUTTON CLICK ---------------------
-  const handleSearch = (searchTerm, locationTerm) => {
+  const handleSearch = (searchTerm) => {
     setLoading(true);
+    const query = searchTerm.replaceAll(/ /g, '%');
     fetch(
-      // `https://quiet-falls-57201.herokuapp.com/https://jobs.github.com/positions.json?description=${searchTerm}&location=${locationTerm}`
-      `https://remotive.io/api/remote-jobs?category=software-dev`
+      `https://remotive.io/api/remote-jobs?search=${query}&limit=100`
     )
       .then((response) => response.json())
       .then((data) => {
-        const newData = data.map((eachData) =>
+        const newData = data.jobs.map((eachData) =>
           // Adding color and save property to the incoming data
           Object.assign({}, eachData, {
             color: colors[Math.floor(Math.random() * 40)],
