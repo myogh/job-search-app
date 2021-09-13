@@ -75,7 +75,7 @@ const SearchBox = ({ handleSearch }) => {
               placeholder={
                 needInput
                   ? "Please enter a keyword..."
-                  : "front end, tech lead, etc."
+                  : "back end, tech lead, etc."
               }
               value={searchTerm}
             />
