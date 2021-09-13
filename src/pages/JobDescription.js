@@ -20,7 +20,7 @@ const JobDescription = ({ jobInfo, handleJobRemove, handleJobSave }) => {
         id="des"
         className="fixed inset-0 min-w-full min-h-full bg-indigo-600"
       ></div>
-      <div className="max-w-md sm:max-w-xl flex flex-col flex-wrap mx-auto px-2 sm:px-0 mb-10">
+      <div className="max-w-md sm:max-w-xl md:max-w-3xl flex flex-col flex-wrap mx-auto px-2 sm:px-0 mb-10">
         {/*----------- JOB TITLE --------------*/}
         <section
           className={`${theme.bgColor} p-3 rounded-lg w-full -mt-20 flex flex-col sm:flex-row justify-center sm:justify-between px-10 items-center py-6`}
