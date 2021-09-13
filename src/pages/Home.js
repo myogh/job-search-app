@@ -16,14 +16,13 @@ function Home() {
   const [pageNumber, setPageNumber] = useState(1);
   const [jobForDescription, setJobToDescribe] = useState({});
   const [nightMode, setNightMode] = useState(false);
-  const [fullTime, setFullTime] = useState(false);
 
   //-------------- DATA FETCHING UPON DOCUMENT LOAD ------------------------
   useEffect(() => {
     setLoading(true);
     fetch(
       // `https://quiet-falls-57201.herokuapp.com/https://jobs.github.com/positions.json?description=`
-      `https://remotive.io/api/remote-jobs?category=software-dev&limit=100`
+      `https://remotive.io/api/remote-jobs?limit=80&category=software-dev`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -43,12 +42,16 @@ function Home() {
   const handleSearch = (searchTerm) => {
     setLoading(true);
     const query = searchTerm.replaceAll(/ /g, '%');
+    let ndata = [];
     fetch(
-      `https://remotive.io/api/remote-jobs?search=${query}&limit=100`
+      `https://remotive.io/api/remote-jobs?limit=80&search=${query}`
     )
       .then((response) => response.json())
       .then((data) => {
-        const newData = data.jobs.map((eachData) =>
+        if (data.jobs.length > 100) {
+          ndata = data.jobs.splice(0, 100);
+        }
+        const newData = ndata.map((eachData) =>
           // Adding color and save property to the incoming data
           Object.assign({}, eachData, {
             color: colors[Math.floor(Math.random() * 40)],
@@ -58,11 +61,6 @@ function Home() {
         setJobList(newData);
         setLoading(false);
       });
-  };
-
-  // ----------------------- FILTER SEARCH -----------------------------
-  const filterSearch = () => {
-    setFullTime((prv) => !prv);
   };
 
   // ------------------ HANDLE JOB SAVE AND REMOVE ------------------------------
@@ -131,9 +129,9 @@ function Home() {
   document.body.style.backgroundColor = nightMode ? "#262629" : "#e2e8f0";
 
   // --------------- Filtering results - full time or not ----------------------
-  const filteredResult = fullTime
-    ? postInOnePage.filter((job) => job.type_type === "Full Time")
-    : postInOnePage;
+  // const filteredResult = fullTime
+  //    postInOnePage.filter((job) => job.type_type === "Full Time")
+  //   : postInOnePage;
 
   // ----------- MAIN APP COMPONENT RETURN ------------------------
   return (
@@ -149,10 +147,9 @@ function Home() {
           <Route exact path="/jobs/:id">
             <SearchBox
               handleSearch={handleSearch}
-              filterSearch={filterSearch}
             />
             <JobsContainer
-              joblist={filteredResult}
+              joblist={postInOnePage}
               loading={loading}
               handleJobSave={handleSave}
               handleJobRemove={handleRemove}

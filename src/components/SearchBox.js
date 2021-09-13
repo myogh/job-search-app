@@ -3,21 +3,15 @@ import HeaderLogo from "../assets/images/laptop.svg";
 import { ThemeContext } from "../assets/themes";
 
 //------------- SearchBox App Parent: App ---------------------
-const SearchBox = ({ handleSearch, filterSearch }) => {
+const SearchBox = ({ handleSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [location, setLocation] = useState("");
   const [needInput, setNeedInput] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
-  const [locationActive, setLocationActive] = useState(false);
 
   const theme = useContext(ThemeContext);
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
-  };
-
-  const handleLocation = (e) => {
-    setLocation(e.target.value);
   };
 
   return (
@@ -32,9 +26,8 @@ const SearchBox = ({ handleSearch, filterSearch }) => {
               setNeedInput(true);
             } else {
               setNeedInput(false);
-              setLocationActive(false);
               setSearchActive(false);
-              handleSearch(searchTerm, location);
+              handleSearch(searchTerm);
               setSearchTerm("");
             }
           }}
@@ -72,23 +65,22 @@ const SearchBox = ({ handleSearch, filterSearch }) => {
               onClick={() => {
                 setNeedInput(false);
                 setSearchActive(true);
-                setLocationActive(false);
               }}
               className={
                 needInput
                   ? `w-full sm:w-1/2 border-b border-red-500 text-red-500 outline-none ${theme.bgColor} ${theme.textColor} text-xs lg:text-sm pb-1 search-box`
-                  : `w-full sm:w-1/2 sm:border-r border-gray-400 outline-none text-xs lg:text-sm ${theme.bgColor} ${theme.textColor} pb-1 truncate search-box`
+                  : `w-full sm:w-1/2 outline-none text-xs lg:text-sm ${theme.bgColor} ${theme.textColor} pb-1 truncate search-box`
               }
               type="text"
               placeholder={
                 needInput
                   ? "Please enter a keyword..."
-                  : "front-end, python, etc."
+                  : "front end, tech lead, etc."
               }
               value={searchTerm}
             />
             {/* ----------- LOCATION ICON ------------------------ */}
-            <svg
+            {/* <svg
               className={
                 locationActive
                   ? "hidden sm:block text-indigo-600 sm:mr-2 sm:ml-2"
@@ -113,9 +105,9 @@ const SearchBox = ({ handleSearch, filterSearch }) => {
                 strokeWidth="2"
                 d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
               />
-            </svg>
+            </svg> */}
             {/* ------------ LOCATION SEARCH BOX ---------------------- */}
-            <input
+            {/* <input
               onChange={handleLocation}
               onClick={() => {
                 setLocationActive(true);
@@ -124,12 +116,13 @@ const SearchBox = ({ handleSearch, filterSearch }) => {
               className={`hidden sm:block sm:w-1/2 sm:border-r sm:border-gray-400 lg:text-sm text-xs sm:outline-none sm:pb-1 ${theme.bgColor} ${theme.textColor}`}
               type="text"
               placeholder="Search"
-            />
+            /> */}
           </div>
           {/* ------------------ FULL TIME CHECKBOX AND SUBMIT BUTTON ----------------------- */}
           <div className="md:w-2/5 lg:w-1/4 flex items-center justify-around">
             <div className="hidden md:flex items-center justify-start text-sm">
-              <input
+              {/* <input
+                disabled={true}
                 className="mr-2"
                 type="checkbox"
                 placeholder="Search"
@@ -137,12 +130,10 @@ const SearchBox = ({ handleSearch, filterSearch }) => {
                 onChange={() => {
                   filterSearch();
                 }}
-              />
+              /> */}
               <label
                 className={`text-sm font-semibold ${theme.bgColor} ${theme.textColor}`}
-              >
-                Full Time
-              </label>
+              ></label>
             </div>
             <input
               className="text-white text-sm bg-indigo-600 cursor-pointer outline-none focus:shadow-outline rounded-md px-3 py-1"
